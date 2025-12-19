@@ -1,4 +1,3 @@
 # In dotfiles/powershell/Aliases.ps1
-if (Get-Command gsudo -ErrorAction SilentlyContinue) {
-    Set-Alias -Name sudo -Value gsudo
-}
+# 直接强制定义，别名优先级高于环境变量中的 .exe
+Set-Alias -Name sudo -Value gsudo -Force -ErrorAction SilentlyContinue

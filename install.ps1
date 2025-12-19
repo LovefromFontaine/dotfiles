@@ -61,15 +61,9 @@ if (!(Get-Command gsudo -ErrorAction SilentlyContinue)) {
     }
 }
 
-# 3. 设置 sudo 别名
-if (Get-Command gsudo -ErrorAction SilentlyContinue) {
-    if (!(Get-Alias sudo -ErrorAction SilentlyContinue)) {
-        Set-Alias -Name sudo -Value gsudo -Scope Global
-        Write-Host "[OK] Alias 'sudo' is now active." -ForegroundColor Green
-    }
-}
 
-# 4. 检查 PowerShell 版本 (作为学生和程序员，强烈建议用 PS7)
+
+# 3. 检查 PowerShell 版本 (作为学生和程序员，强烈建议用 PS7)
 if ($PSVersionTable.PSVersion.Major -lt 7) {
     Write-Host "[INFO] Modern PowerShell (v7+) not detected." -ForegroundColor Yellow
     # 如果你想全自动升级，可以取消下面这行的注释
