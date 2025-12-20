@@ -3,15 +3,17 @@
 # Function: Establish profile links and initialize system tasks
 # ==============================================================================
 
+
+# ==========================================================
+# Part 0: Environment & Package Manager Setup (Scoop)
+# ==========================================================
 # --- Configuration Variables ---
 $targetProfile = $PROFILE
 $repoProfile = Join-Path $PSScriptRoot "powershell\Microsoft.PowerShell_profile.ps1"
 
 Write-Host "Starting dotfiles environment configuration..." -ForegroundColor Cyan
 
-# ==========================================================
-# Part 0: Environment & Package Manager Setup (Scoop)
-# ==========================================================
+
 Write-Host "`n[0/3] Initializing Package Manager and Prerequisites..." -ForegroundColor Magenta
 
 # 增强版环境刷新函数：处理变量展开，确保 Scoop 路径立即可用
