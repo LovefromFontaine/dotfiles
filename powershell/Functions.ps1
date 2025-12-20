@@ -17,7 +17,7 @@ function Unlock-UWP ($AppName) {
 # Install-ScoopApp: Idempotently install a Scoop application, optionally adding a bucket
 function Install-ScoopApp {
     param(
-        [Parameter(Required=$true)][string]$AppName,
+        [Parameter(Mandatory=$true)][string]$AppName,
         [string]$Bucket = ""
     )
     # 检查 Bucket
@@ -35,4 +35,13 @@ function Install-ScoopApp {
     } else {
         Write-Host "[SKIP] $AppName is already installed." -ForegroundColor Gray
     }
+}
+
+# Refresh-Environment: Refresh environment variables, expanding any embedded variables
+function Refresh-Environment {
+    Write-Host "[INFO] Refreshing environment variables..." -ForegroundColor Gray
+    $rawMachinePath = [System.Environment]::GetEnvironmentVariable("Path", "Machine")
+    $rawUserPath = [System.Environment]::GetEnvironmentVariable("Path", "User")
+    # 展开 %LocalAppData% 等变量，防止路径无法识别
+    $env:Path = [System.Environment]::ExpandEnvironmentVariables("$rawMachinePath;$rawUserPath")
 }
