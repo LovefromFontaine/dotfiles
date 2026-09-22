@@ -41,9 +41,9 @@ if (Get-Command oh-my-posh -ErrorAction SilentlyContinue) {
 
 # 2. 初始化 Zoxide
 if (Get-Command zoxide -ErrorAction SilentlyContinue) {
-    $zoxideInit = zoxide init powershell
-    if ($zoxideInit) {
-        $zoxideInit | Invoke-Expression
+    $zoxideInit = zoxide init powershell | Out-String
+    if (-not [string]::IsNullOrWhiteSpace($zoxideInit)) {
+        Invoke-Expression $zoxideInit
     }
 }
 
